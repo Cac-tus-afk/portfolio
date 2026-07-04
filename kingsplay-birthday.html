@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Kingsplay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Literata:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0a0e1f;
+    --navy-mid:#141b36;
+    --dawn-rose:#d98a8f;
+    --dawn-gold:#e9b869;
+    --cream:#f6efe1;
+    --star:#f7f1de;
+    --teal-line:#4a6b73;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Literata', serif;
+    color:var(--cream);
+    background:var(--navy-deep);
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* ---- Scroll-linked sky backdrop ---- */
+  #sky{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+    transition:background 0.1s linear;
+  }
+
+  #stars{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+  }
+
+  .star{
+    position:absolute;
+    background:var(--star);
+    border-radius:50%;
+    animation:twinkle 4s ease-in-out infinite;
+  }
+
+  @keyframes twinkle{
+    0%,100%{opacity:0.2; transform:scale(0.8);}
+    50%{opacity:1; transform:scale(1.15);}
+  }
+
+  /* thread of light that travels down the page */
+  #thread-wrap{
+    position:fixed;
+    left:50%;
+    top:0;
+    width:2px;
+    height:100vh;
+    transform:translateX(-50%);
+    z-index:-1;
+    pointer-events:none;
+  }
+  #thread-line{
+    position:absolute;
+    left:0; top:0;
+    width:2px;
+    background:linear-gradient(180deg, rgba(247,241,222,0) 0%, rgba(247,241,222,0.35) 100%);
+    height:0%;
+  }
+  #thread-glow{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:14px;
+    height:14px;
+    margin-left:-7px;
+    margin-top:-7px;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--star) 0%, rgba(247,241,222,0.4) 45%, rgba(247,241,222,0) 75%);
+    box-shadow:0 0 24px 6px rgba(247,241,222,0.5);
+  }
+
+  section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:8vh 6vw;
+    position:relative;
+  }
+
+  .eyebrow{
+    font-family:'Literata', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:0.95rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.6;
+    margin-bottom:1.6rem;
+  }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(2.4rem, 7vw, 5rem);
+    line-height:1.08;
+    max-width:16ch;
+    letter-spacing:-0.01em;
+  }
+
+  h1 .heart{
+    display:inline-block;
+    font-size:0.6em;
+    margin-left:0.15em;
+  }
+
+  .lede{
+    margin-top:2rem;
+    font-size:clamp(1.05rem, 2vw, 1.3rem);
+    font-weight:300;
+    max-width:38ch;
+    opacity:0.85;
+    line-height:1.6;
+  }
+
+  .verse{
+    font-family:'Literata', serif;
+    font-weight:400;
+    font-size:clamp(1.15rem, 2.4vw, 1.55rem);
+    line-height:1.75;
+    max-width:42ch;
+    font-style: italic;
+  }
+
+  .verse strong{
+    font-style:normal;
+    font-weight:500;
+    color:var(--dawn-gold);
+  }
+
+  /* triptych for joy / peace / courage */
+  .triptych{
+    display:flex;
+    gap:clamp(1.5rem, 5vw, 5rem);
+    margin-top:3rem;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .triptych-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.6rem;
+    max-width:220px;
+  }
+  .triptych-word{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(1.4rem, 3vw, 2rem);
+    color:var(--dawn-gold);
+  }
+  .triptych-against{
+    font-size:0.85rem;
+    opacity:0.55;
+    font-style:italic;
+  }
+  .triptych-divider{
+    width:34px;
+    height:1px;
+    background:var(--teal-line);
+    opacity:0.6;
+    margin:0.2rem 0;
+  }
+
+  footer{
+    min-height:60vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10vh 6vw 14vh;
+  }
+
+  footer h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(1.9rem, 5vw, 3.2rem);
+    color:var(--navy-deep);
+    max-width:18ch;
+    line-height:1.15;
+  }
+
+  footer p{
+    margin-top:1.6rem;
+    font-size:clamp(1rem, 2vw, 1.2rem);
+    max-width:36ch;
+    color:#3a2f22;
+    opacity:0.85;
+    line-height:1.65;
+  }
+
+  footer .signoff{
+    margin-top:3rem;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.1rem;
+    color:#5a3d2b;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .star{animation:none; opacity:0.6;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div id="sky"></div>
+<div id="stars"></div>
+<div id="thread-wrap">
+  <div id="thread-line"></div>
+  <div id="thread-glow"></div>
+</div>
+
+<section id="hero">
+  <p class="eyebrow">for Kingsplay</p>
+  <h1>Happy Birthday, Kingsplay.<span class="heart"> 🤍</span></h1>
+  <p class="lede">A new year is here. Scroll slowly — this one's for you.</p>
+</section>
+
+<section>
+  <p class="verse">I pray this new year reminds you that every season you've lived through has been <strong>preparing you</strong> for something greater. Some dreams take time, and some victories are worth waiting for. So keep going, keep believing, and don't lose sight of the person you're becoming.</p>
+</section>
+
+<section>
+  <p class="verse">From now on, I hope you choose —</p>
+  <div class="triptych">
+    <div class="triptych-item">
+      <span class="triptych-word">Joy</span>
+      <span class="triptych-divider"></span>
+      <span class="triptych-against">over fear</span>
+    </div>
+    <div class="triptych-item">
+      <span class="triptych-word">Peace</span>
+      <span class="triptych-divider"></span>
+      <span class="triptych-against">over doubt</span>
+    </div>
+    <div class="triptych-item">
+      <span class="triptych-word">Courage</span>
+      <span class="triptych-divider"></span>
+      <span class="triptych-against">over anything that tries to hold you back</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="verse">May this year bring new opportunities, genuine happiness, and moments that make you look back with <strong>gratitude</strong>.</p>
+</section>
+
+<section>
+  <p class="verse">And if life ever feels heavy, I hope you remember that you never have to carry it alone. Even when the road feels dark, you will be found — by the people who love you, by hope, and by the <strong>strength that's always been within you</strong>.</p>
+</section>
+
+<footer>
+  <h2>Happy Birthday, once again.</h2>
+  <p>May this year surprise you in the best ways, fill your heart with unforgettable memories, and bring you closer to every dream you've been quietly holding onto. You deserve nothing less.</p>
+  <p class="signoff">🤍</p>
+</footer>
+
+<script>
+  // Generate scattered stars
+  const starsContainer = document.getElementById('stars');
+  const STAR_COUNT = 90;
+  const starEls = [];
+  for(let i=0;i<STAR_COUNT;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random()*2.2 + 0.6;
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    s.style.left = (Math.random()*100)+'vw';
+    s.style.top = (Math.random()*260)+'vh'; // spread across first sections
+    s.style.animationDelay = (Math.random()*4)+'s';
+    s.style.animationDuration = (3+Math.random()*3)+'s';
+    starsContainer.appendChild(s);
+    starEls.push(s);
+  }
+
+  const sky = document.getElementById('sky');
+  const threadLine = document.getElementById('thread-line');
+  const threadGlow = document.getElementById('thread-glow');
+
+  // colors to interpolate: navy deep -> navy mid -> dawn rose -> dawn gold -> cream
+  function hexToRgb(hex){
+    const v = hex.replace('#','');
+    return [parseInt(v.slice(0,2),16), parseInt(v.slice(2,4),16), parseInt(v.slice(4,6),16)];
+  }
+  function lerp(a,b,t){ return a + (b-a)*t; }
+  function mix(c1,c2,t){
+    return `rgb(${Math.round(lerp(c1[0],c2[0],t))}, ${Math.round(lerp(c1[1],c2[1],t))}, ${Math.round(lerp(c1[2],c2[2],t))})`;
+  }
+
+  const navyDeep = hexToRgb('#0a0e1f');
+  const navyMid  = hexToRgb('#141b36');
+  const rose     = hexToRgb('#d98a8f');
+  const gold     = hexToRgb('#e9b869');
+  const cream    = hexToRgb('#f6efe1');
+
+  function updateOnScroll(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const p = Math.min(Math.max(scrollTop / docHeight, 0), 1);
+
+    // background stops: 0 -> navyDeep, 0.35 -> navyMid, 0.6 -> rose, 0.82 -> gold, 1 -> cream
+    let top, bottom;
+    if(p < 0.35){
+      const t = p/0.35;
+      top = mix(navyDeep, navyDeep, t);
+      bottom = mix(navyDeep, navyMid, t);
+    } else if(p < 0.6){
+      const t = (p-0.35)/0.25;
+      top = mix(navyDeep, navyMid, t);
+      bottom = mix(navyMid, rose, t);
+    } else if(p < 0.82){
+      const t = (p-0.6)/0.22;
+      top = mix(navyMid, rose, t);
+      bottom = mix(rose, gold, t);
+    } else {
+      const t = (p-0.82)/0.18;
+      top = mix(rose, gold, t);
+      bottom = mix(gold, cream, t);
+    }
+    sky.style.background = `linear-gradient(180deg, ${top} 0%, ${bottom} 100%)`;
+
+    // footer text should darken against light background near the end
+    const footerH2 = document.querySelector('footer h2');
+    const footerP = document.querySelector('footer p');
+
+    // stars fade out as we approach dawn
+    document.getElementById('stars').style.opacity = Math.max(1 - p/0.75, 0);
+
+    // thread grows and glow travels
+    threadLine.style.height = (p*100)+'%';
+    threadGlow.style.top = (p*100)+'vh';
+  }
+
+  window.addEventListener('scroll', updateOnScroll, {passive:true});
+  window.addEventListener('resize', updateOnScroll);
+  updateOnScroll();
+</script>
+
+</body>
+</html>
